@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PharmaCare | Patient Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">💊 <span>PharmaCare</span></div>
+    <nav>
+      <button class="nav active" data-page="dashboard">Dashboard</button>
+      <button class="nav" data-page="patients">Patients</button>
+      <button class="nav" data-page="doctors">Doctors</button>
+      <button class="nav" data-page="medications">Medications</button>
+      <button class="nav" data-page="appointments">Appointments</button>
+    </nav>
+    <div class="side-note">Pharmacy Industry<br>Patient Management System</div>
+  </aside>
+
+  <main class="main">
+    <header>
+      <div>
+        <p class="eyebrow">PHARMACY MANAGEMENT</p>
+        <h1 id="pageTitle">Patient Dashboard</h1>
+      </div>
+      <button class="primary" onclick="openPatientModal()">+ Add Patient</button>
+    </header>
+
+    <section id="dashboard" class="page active-page">
+      <div class="stats">
+        <div class="stat"><span>Total Patients</span><strong id="patientCount">0</strong></div>
+        <div class="stat"><span>Assigned Doctors</span><strong id="doctorCount">0</strong></div>
+        <div class="stat"><span>Active Medicines</span><strong id="medicineCount">0</strong></div>
+        <div class="stat"><span>Today's Appointments</span><strong id="appointmentCount">0</strong></div>
+      </div>
+      <div class="grid two">
+        <div class="card">
+          <div class="card-head"><h2>Recent Patients</h2></div>
+          <div id="recentPatients"></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h2>Today's Schedule</h2></div>
+          <div id="todaySchedule"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="patients" class="page">
+      <div class="toolbar"><input id="patientSearch" placeholder="Search patients..." oninput="renderPatients()"></div>
+      <div class="card"><div id="patientsTable"></div></div>
+    </section>
+
+    <section id="doctors" class="page">
+      <div class="grid" id="doctorsGrid"></div>
+    </section>
+
+    <section id="medications" class="page">
+      <div class="card"><div id="medicationsTable"></div></div>
+    </section>
+
+    <section id="appointments" class="page">
+      <div class="card"><div id="appointmentsTable"></div></div>
+    </section>
+  </main>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-box">
+      <button class="close" onclick="closeModal()">×</button>
+      <h2>Add Patient</h2>
+      <form id="patientForm">
+        <label>Patient Name<input name="name" required></label>
+        <label>Age<input name="age" type="number" min="1" max="120" required></label>
+        <label>Condition<input name="condition" placeholder="e.g. Hypertension" required></label>
+        <label>Doctor<select name="doctor" id="doctorSelect"></select></label>
+        <label>Medicine<input name="medicine" placeholder="e.g. Amlodipine 5 mg" required></label>
+        <label>Dosage / Timing<input name="timing" placeholder="e.g. 1 tablet after breakfast" required></label>
+        <label>Appointment<input name="appointment" type="datetime-local" required></label>
+        <button class="primary" type="submit">Save Patient</button>
+      </form>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
